@@ -56,12 +56,15 @@
                 <version>3.0.2</version>
                 <configuration>
                     <archive>
+                        <addMavenDescriptor>true</addMavenDescriptor>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>com.npci.isc.Server</mainClass>
                         </manifest>
-                        <!--<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>-->
+                        <!--
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        -->
                     </archive>
                 </configuration>
             </plugin>
@@ -84,7 +87,6 @@
         </plugins>
     </build>
 
-    <!--
     <repositories>
         <repository>
             <id>oracleReleases</id>
@@ -93,6 +95,5 @@
             <layout>default</layout>
         </repository>
     </repositories>
-    -->
 
 </project>

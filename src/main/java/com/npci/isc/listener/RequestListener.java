@@ -13,6 +13,8 @@ import java.io.IOException;
 public class RequestListener implements ISORequestListener {
     public boolean process(ISOSource isoSource, ISOMsg isoMsg) {
         try {
+            isoMsg.setResponseMTI();
+            isoMsg.set(39, "00");
             isoSource.send(isoMsg);
         } catch (IOException e) {
             e.printStackTrace();

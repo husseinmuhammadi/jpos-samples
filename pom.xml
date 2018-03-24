@@ -24,13 +24,38 @@
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
 
     <build>
-        <finalName>jpos-server</finalName>
+        <finalName>jpos-service</finalName>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+
+                <executions>
+                    <execution>
+                        <id>copy-properties</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/deploy</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/deploy</directory>
+                                    <includes>
+                                        <include>DatavsnExceptions.properties</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -42,7 +67,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -60,7 +85,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.npci.isc.Server</mainClass>
+                            <mainClass>com.npci.isc.Q2Service</mainClass>
                         </manifest>
                         <manifestEntries>
                             <key>value</key>
@@ -81,7 +106,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.npci.isc.Server</mainClass>
+                                    <mainClass>com.npci.isc.Q2Service</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

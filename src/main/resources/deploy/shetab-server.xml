@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server name="atm-ndc-proxy-server" class="org.jpos.q2.iso.QServer" logger="Q2">
+    <attr name="port" type="java.lang.Integer">8000</attr>
+    <attr name="minSessions" type="java.lang.Integer">1</attr>
+    <attr name="maxSessions" type="java.lang.Integer">10</attr>
+    <channel name="shetab.channel" class="org.jpos.iso.channel.ASCIIChannel"
+             packager="com.npci.isc.packager.ShetabISO87APackager" logger="Q2">
+    </channel>
+    <request-listener
+            class="com.npci.isc.listener.RequestListener" logger="Q2">
+    </request-listener>
+</server>

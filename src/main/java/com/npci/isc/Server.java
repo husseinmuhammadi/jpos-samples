@@ -21,6 +21,7 @@ public class Server {
             ISOServer server = new ISOServer(8000, channel, null);
             server.setLogger(logger, "server");
             server.addISORequestListener(new RequestListener());
+
             new Thread(server).start();
         } catch (IOException e) {
             e.printStackTrace();

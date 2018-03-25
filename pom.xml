@@ -32,6 +32,25 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="${project.build.directory}/log"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.2</version>
                 <executions>
@@ -47,7 +66,11 @@
                                 <resource>
                                     <directory>src/main/resources/deploy</directory>
                                     <includes>
-                                        <include>shetab-server.xml</include>
+                                        <include>00_logger.xml</include>
+                                        <include>10_channel_jpos.xml</include>
+                                        <include>20_mux_jpos.xml</include>
+                                        <include>50_shetab_server.xml</include>
+                                        <include>99_sysmon.xml</include>
                                     </includes>
                                 </resource>
                             </resources>

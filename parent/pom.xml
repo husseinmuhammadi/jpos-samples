@@ -12,106 +12,56 @@
     <modules>
         <module>../startup</module>
         <module>../jboss-service</module>
+        <module>../ear</module>
     </modules>
 
     <url>http://maven.apache.org</url>
 
     <properties>
-
         <!-- ArtifactId prop -->
+        <startup.artifactId>switch-startup</startup.artifactId>
+        <jboss.service.artifactId>switch-jboss-service</jboss.service.artifactId>
+        <ear.artifactId>switch-ear</ear.artifactId>
+
         <web.artifactId>switch-web</web.artifactId>
         <service.artifactId>switch-service</service.artifactId>
-        <ear.artifactId>switch-ear</ear.artifactId>
         <model.artifactId>switch-model</model.artifactId>
         <api.artifactId>switch-api</api.artifactId>
         <utility.artifactId>utility</utility.artifactId>
-        <jpos.artifactId>q2mbean</jpos.artifactId>
         <core.artifactId>switch-core</core.artifactId>
         <jsf.artifactId>jsf-component</jsf.artifactId>
         <security.artifactId>security</security.artifactId>
 
         <!-- Version prop -->
+        <startup.version>1.0.0-SNAPSHOT</startup.version>
+        <jboss.service.version>1.0.0-SNAPSHOT</jboss.service.version>
+        <ear.version>1.0.0-SNAPSHOT</ear.version>
+
         <api.version>1.0.0-SNAPSHOT</api.version>
         <model.version>1.0.0-SNAPSHOT</model.version>
         <service.version>1.0.0-SNAPSHOT</service.version>
         <web.version>1.0.0-SNAPSHOT</web.version>
-        <ear.version>1.0.0-SNAPSHOT</ear.version>
         <utility.version>1.0.0-SNAPSHOT</utility.version>
-        <jpos.version>1.0</jpos.version>
         <core.version>1.0.0-SNAPSHOT</core.version>
         <jsf.version>1.0.0-SNAPSHOT</jsf.version>
         <security.version>1.0.0-SNAPSHOT</security.version>
 
         <!-- Archive name prop -->
+        <startup.archive.name>startup.jar</startup.archive.name>
+        <jboss.service.archive.name>q2mbean-1.0.sar</jboss.service.archive.name>
+
         <service.archive.name>service.jar</service.archive.name>
         <security.archive.name>security.jar</security.archive.name>
         <web.archive.name>web.war</web.archive.name>
         <model.archive.name>model.jar</model.archive.name>
         <api.archive.name>api.jar</api.archive.name>
         <core.archive.name>core.jar</core.archive.name>
-        <jpos.archive.name>q2mbean-1.0.sar</jpos.archive.name>
 
         <!-- web -->
         <web.contextroot>/switch</web.contextroot>
-
-        <!-- database -->
-        <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-        <dbunit.operation.type>REFRESH</dbunit.operation.type>
-        <hibernate.dialect>com.dpi.financial.ftcom.model.base.hibernate.EnhancedMySQL5InnoDBDialect</hibernate.dialect>
-        <jdbc.groupId>mysql</jdbc.groupId>
-        <netbeans.hint.useExternalMaven>true</netbeans.hint.useExternalMaven>
-        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
-        <jdbc.version>5.0.5</jdbc.version>
-        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-        <jdbc.url>jdbc:mysql://localhost/bis?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;connectionCollation=utf8_general_ci</jdbc.url>
-        <jdbc.username>root</jdbc.username>
-        <jdbc.password>14894</jdbc.password>
-
-        <!-- glassfish -->
-        <glassfish.user>admin</glassfish.user>
-        <glassfish.domain.host>localhost</glassfish.domain.host>
-        <glassfish.domain.adminPort>4848</glassfish.domain.adminPort>
-        <glassfish.adminUser>admin</glassfish.adminUser>
-        <glassfish.adminPassword>admin</glassfish.adminPassword>
-        <arquillian-container-properties>
-            <![CDATA[
-                        <container qualifier="glassfish" default="true">
-                            <configuration>
-                                <property name="adminHost">${glassfish.domain.host}</property>
-                                <property name="adminPort">${glassfish.domain.adminPort}</property>
-                                <property name="adminUser">${glassfish.adminUser}</property>
-                                <property name="adminPassword">${glassfish.adminPassword}</property>
-                                <property name="target">server</property>
-                            </configuration>
-                        </container>
-                    ]]>
-        </arquillian-container-properties>
-
-        <persistence.xml>
-            <![CDATA[<property name="javax" value="javaee" />]]>
-        </persistence.xml>
-
-        <shiro.version>1.2.4</shiro.version>
-
-
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -119,45 +69,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.22</version>
-        </dependency>
-
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j</artifactId>
-            <version>56.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-            <version>${shiro.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -180,36 +95,8 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-
         </plugins>
     </build>
-
-    <!--
-    <profiles>
-        <profile>
-            <id>Test-GlassFish</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                    <version>1.0.0.CR4</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-    -->
 
     <repositories>
         <repository>
@@ -219,5 +106,4 @@
             <layout>default</layout>
         </repository>
     </repositories>
-
 </project>

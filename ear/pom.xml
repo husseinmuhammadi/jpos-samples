@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.npci.isc</groupId>
+        <artifactId>switch-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../parent/</relativePath>
+    </parent>
+
+    <artifactId>${ear.artifactId}</artifactId>
+    <version>${ear.version}</version>
+
+    <packaging>ear</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${jboss.service.artifactId}</artifactId>
+            <version>${jboss.service.version}</version>
+            <type>sar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${startup.artifactId}</artifactId>
+            <version>${startup.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>switch-ear</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+
+                <configuration>
+                    <defaultLibBundleDir>lib/</defaultLibBundleDir>
+                    <!--<skinnyWars>true</skinnyWars>-->
+                    <archive>
+                        <!--<manifest>-->
+                        <!--<addClasspath>true</addClasspath>-->
+                        <!--</manifest>-->
+                        <addMavenDescriptor>true</addMavenDescriptor>
+                    </archive>
+                    <version>7</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <modules>
+                        <sarModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${jboss.service.artifactId}</artifactId>
+                            <bundleFileName>${jboss.service.archive.name}</bundleFileName>
+                        </sarModule>
+                        <jarModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${startup.artifactId}</artifactId>
+                            <bundleFileName>${startup.archive.name}</bundleFileName>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                            <bundleDir>/</bundleDir>
+                        </jarModule>
+                    </modules>
+                    <!-- create jboss-app.xml and put it in META-INF folder, you can create this file manually
+                    <jboss>
+                        <version>4</version>
+                        <unauthenticated-principal>guest</unauthenticated-principal>
+                        <loader-repository>myapp:archive=jposQ.ear</loader-repository>
+                        <loader-repository>com.foo:loader=foo-application-1.0.ear</loader-repository>
+                    </jboss>
+                    -->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>junit</groupId>
+                            <artifactId>junit</artifactId>
+                            <!--<version>3.8.1</version>-->
+                            <!--<type>jar</type>-->
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}/alternateLocation</outputDirectory>
+                            <destFileName>optional-new-name.jar</destFileName>
+                        </artifactItem>
+                    </artifactItems>
+                    <outputDirectory>${project.build.directory}/wars</outputDirectory>
+                    <overWriteReleases>false</overWriteReleases>
+                    <overWriteSnapshots>true</overWriteSnapshots>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

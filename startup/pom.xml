@@ -11,30 +11,21 @@
         <relativePath>../parent/</relativePath>
     </parent>
 
-    <artifactId>switch-startup</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>${startup.artifactId}</artifactId>
+    <version>${startup.version}</version>
 
     <packaging>jar</packaging>
 
     <dependencies>
-
         <dependency>
             <groupId>org.jpos</groupId>
             <artifactId>jpos</artifactId>
             <version>2.1.1</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
-        <finalName>jpos-service</finalName>
+        <finalName>jpos-tools</finalName>
 
         <plugins>
             <plugin>

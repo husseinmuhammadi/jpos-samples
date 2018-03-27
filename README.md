@@ -7,3 +7,9 @@ Compile goal should be added before assembly:single or otherwise the code on you
 
 To create a single jar file:
 http://www.baeldung.com/executable-jar-with-maven
+
+
+jboss-service
+--------------------------------------------------------------------------------
+http://middlewaremagic.com/jboss/?p=366
+http://middlewaremagic.com/jboss/?p=307

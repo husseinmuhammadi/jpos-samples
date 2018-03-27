@@ -13,3 +13,9 @@ jboss-service
 --------------------------------------------------------------------------------
 http://middlewaremagic.com/jboss/?p=366
 http://middlewaremagic.com/jboss/?p=307
+
+
+
+JMX
+--------------------------------------------------------------------------------
+https://stackoverflow.com/questions/8920126/startup-class-extends-servicembean-vs-load-on-startup-servlet

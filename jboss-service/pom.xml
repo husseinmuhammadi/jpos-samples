@@ -36,36 +36,6 @@
 
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <id>copy-properties</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${env.JBOSS_HOME}/bin/q2/deploy</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources/deploy</directory>
-                                    <includes>
-                                        <!--<include>00_logger.xml</include>-->
-                                        <include>10_channel_jpos.xml</include>
-                                        <include>20_mux_jpos.xml</include>
-                                        <include>50_shetab_server.xml</include>
-                                        <include>99_sysmon.xml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jboss-packaging-maven-plugin</artifactId>
                 <version>2.2</version>

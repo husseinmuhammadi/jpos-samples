@@ -19,6 +19,12 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>${startup.artifactId}</artifactId>
+            <version>${startup.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>${jboss.service.artifactId}</artifactId>
             <version>${jboss.service.version}</version>
             <type>sar</type>
@@ -26,8 +32,9 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>${startup.artifactId}</artifactId>
-            <version>${startup.version}</version>
+            <artifactId>${web.artifactId}</artifactId>
+            <version>${web.version}</version>
+            <type>war</type>
         </dependency>
     </dependencies>
 
@@ -52,18 +59,18 @@
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <generateApplicationXml>true</generateApplicationXml>
                     <modules>
+                        <webModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${web.artifactId}</artifactId>
+                            <bundleFileName>${web.archive.name}</bundleFileName>
+                            <contextRoot>${web.contextroot}</contextRoot>
+                        </webModule>
+
                         <sarModule>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>${jboss.service.artifactId}</artifactId>
                             <bundleFileName>${jboss.service.archive.name}</bundleFileName>
                         </sarModule>
-                        <jarModule>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${startup.artifactId}</artifactId>
-                            <bundleFileName>${startup.archive.name}</bundleFileName>
-                            <includeInApplicationXml>true</includeInApplicationXml>
-                            <bundleDir>/</bundleDir>
-                        </jarModule>
                     </modules>
                     <!-- create jboss-app.xml and put it in META-INF folder, you can create this file manually
                     <jboss>

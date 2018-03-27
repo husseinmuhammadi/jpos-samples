@@ -27,9 +27,7 @@ public class Client {
             channel.send(m);
             ISOMsg r = channel.receive();
             channel.disconnect();
-        } catch (ISOException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ISOException | IOException e) {
             e.printStackTrace();
         }
     }

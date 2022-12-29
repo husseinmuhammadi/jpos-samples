@@ -11,10 +11,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>../startup</module>
-        <module>../jboss-service</module>
-        <module>../web</module>
-        <module>../ear</module>
+        <module>startup</module>
+        <module>jboss-service</module>
+        <module>web</module>
+        <module>ear</module>
     </modules>
 
     <url>http://maven.apache.org</url>
